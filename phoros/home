@@ -21,33 +21,35 @@ def imgReply = slurper.parseText(svcReply)
 
 html.html {
     head {
-        title("@projectlabel@: CITE services")
+        title("@projectlabel@")
 		link(type : "text/css", rel : "stylesheet", href : "@coreCss@", title : "CSS stylesheet")
     }
     
     body {
     
     	header (role : "banner"){
-            h1("@projectlabel@: CITE services")
+            h1("@projectlabel@: sources for the study of Athenian Tribute")
             nav(role : "navigation")
     	}
     	
     	article (role : "main") {
+	  
 
-	  p("The phoros project lives here.")
-	  p("Dynamic out includes ${qg.msg()}")
-	  p("Setting of project label property = @projectlabel@")
+
 	    ul {
+	/*
                 li {
                     mkp.yield ("See an ")
                     a(href : "overview", "overview of contents")
 		    mkp.yield (" (with links to browse contents)")
                 }
-                li {
-                    a(href : "svcforms", "Look up material by URN")
-                }
+	*/
+	      li {
+		a(href : "svcforms", "Look up material by URN")
+	      }
             }
         }
+
         footer("@htmlfooter@")
     }
 }

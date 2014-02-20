@@ -160,7 +160,6 @@ war {
 
     from "phoros"
 
-
     classpath sourceSets.main.output.classesDir
     classpath sourceSets.phoros.output.classesDir
     classpath configurations.runtime
