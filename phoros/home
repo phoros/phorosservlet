@@ -37,39 +37,43 @@ html.html {
 
 
 	    ul {
+
+	      li {				
+		mkp.yield "see a summary of "
+		a(href: "survival.html","surviving payment records")
+	      }
+
+
 	      li {
 		mkp.yield "browse "
 		a(href : "browseimg?urn=urn:cite:shotimg:atl", "images")
 	      }
 
+	      /*
 	      li {
 		mkp.yield "read "
 		a(href: "textdocs","texts")
-	      }
+		}*/
 
 
 	      li {
 	       mkp.yield "see layout of documents on "
 		a (href: "indices?urn=urn:cite:shotimg:atl.ATL001","stele 1")
 	      }
-
+	      /*
 	      li {
 		mkp.yield "analyze payment records"
-	      }
-
-	      li {				
-		mkp.yield "see a summary of "
-		a(href: "survival.html","what survives")
-	      }
+	      } */
 
 
-	/*
+
+
                 li {
                     mkp.yield ("See an ")
                     a(href : "overview", "overview of contents")
 		    mkp.yield (" (with links to browse contents)")
                 }
-	*/
+
 	      li {
 		a(href : "svcforms", "look up material by URN")
 	      }
