@@ -1,0 +1,36 @@
+import edu.harvard.chs.cite.CiteUrn
+import edu.holycross.shot.phoros.QueryGenerator
+
+String sparql = "@sparqls@"
+QueryGenerator qg = new QueryGenerator()
+
+CiteUrn placeUrn
+if (params.urn) {
+  try {
+    placeUrn = new CiteUrn(params.urn)
+  } catch (Exception e) {
+    System.err.println "Could not make URN from " + params.urn
+  }
+}
+
+
+
+html.html {
+    head {
+        title("@projectlabel@")
+		link(type : "text/css", rel : "stylesheet", href : "@coreCss@", title : "CSS stylesheet")
+    }
+    
+    body {
+    
+    	header (role : "banner"){
+            h1("Place: ${placeUrn}")
+            nav(role : "navigation")
+    	}
+    	
+    	article (role : "main") {
+        }
+
+        footer("@htmlfooter@")
+    }
+}

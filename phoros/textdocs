@@ -1,0 +1,60 @@
+import edu.harvard.chs.cite.CiteUrn
+import edu.holycross.shot.phoros.QueryGenerator
+
+String sparql = "@sparqls@"
+QueryGenerator qg = new QueryGenerator()
+
+CiteUrn placeUrn
+if (params.urn) {
+  try {
+    placeUrn = new CiteUrn(params.urn)
+  } catch (Exception e) {
+    System.err.println "Could not make URN from " + params.urn
+  }
+}
+
+
+
+html.html {
+    head {
+        title("@projectlabel@")
+		link(type : "text/css", rel : "stylesheet", href : "@coreCss@", title : "CSS stylesheet")
+    }
+    
+    body {
+    
+    	header (role : "banner"){
+            h1("Browse texts")
+            nav(role : "navigation")
+    	}
+    	
+    	article (role : "main") {
+	  
+
+	  table {				
+	    tr {
+	      th("Year") 
+	      th("Diplomatic text")
+	      th("Normalized text")
+	      th("Comparative view")
+	    }
+
+	    tr {
+	      td("Year 8") 
+	      td {
+		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year8.hc1:header.right", "normalized")
+	      }
+	      td {
+		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year8.hc2:header.right", "normalized")
+	      }
+	      td {
+	      }
+	    }
+
+
+	  }
+        }
+
+        footer("@htmlfooter@")
+    }
+}
