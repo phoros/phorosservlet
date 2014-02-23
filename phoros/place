@@ -29,6 +29,27 @@ html.html {
     	}
     	
     	article (role : "main") {
+	  p("Submit sparql query to get: ")
+	  ul {
+	    li("rdf label")
+	    li("pleiades info?")
+	    li("Text reff (hmt:occursIn)")
+	    li("Payment records (phoros:paid)")
+	    /*
+SELECT  ?plc ?yr ?pmt ?v ?o WHERE {
+
+?plc <http://shot.holycross.edu/phoros/rdf/paid>  ?pmt .
+
+?pmt ?v ?o .
+?pmt <http://www.homermultitext.org/hmt/citedata/payrec_Year>  ?yr .
+
+FILTER (str(?plc) = "urn:cite:phoros:places.5")
+}
+ORDER BY ?yr 
+*/
+
+
+	  }
         }
 
         footer("@htmlfooter@")

@@ -35,44 +35,66 @@ html.html {
     	article (role : "main") {
 	  
 
+	  h2("Texts")
+	  ul {
+	    li {
+	      mkp.yield "browse "
+	      a(href: "textdocs", "texts")
+	    }
+	  }
 
-	    ul {
+	  h2("Artifacts")
 
-	      li {				
-		mkp.yield "see a summary of "
-		a(href: "survival.html","surviving payment records")
+	  ul {
+	      li {
+	       mkp.yield "see layout of inscribed surfaces on "
+		a (href: "indices?urn=urn:cite:shotimg:atl.ATL001","stele 1")
 	      }
 
+	      li {
+		mkp.yield "see extant stone fragments"
+	      }
+	  }
 
+	  h2("Images")
+	  ul {	 
 	      li {
 		mkp.yield "browse "
 		a(href : "browseimg?urn=urn:cite:shotimg:atl", "images")
 	      }
+	  }
 
-	      /*
-	      li {
-		mkp.yield "read "
-		a(href: "textdocs","texts")
-		}*/
+	  h2("Places")
+	  ul {
+	    li {
+	      mkp.yield "tribute-paying entities"
+	    }
+	  }
 
-
-	      li {
-	       mkp.yield "see layout of documents on "
-		a (href: "indices?urn=urn:cite:shotimg:atl.ATL001","stele 1")
+	  h2("Analyses")
+	    ul {
+	      li {				
+		mkp.yield "see a summary of "
+		a(href: "survival.html","surviving payment records")
 	      }
-	      /*
 	      li {
-		mkp.yield "analyze payment records"
-	      } */
+		mkp.yield "search payment records by amount"
+	      }
+	      li {
+		mkp.yield "see tribute by administrative district"
+		mkp.yield " (year 5 and following)"
+	      }
+	    }
 
 
+	    h2("Other utilities")
+	    ul{
 
-
-                li {
-                    mkp.yield ("See an ")
-                    a(href : "overview", "overview of contents")
-		    mkp.yield (" (with links to browse contents)")
-                }
+	      li {
+		mkp.yield ("See an ")
+		a(href : "overview", "overview of contents")
+		mkp.yield (" (with links to browse contents)")
+	      }
 
 	      li {
 		a(href : "svcforms", "look up material by URN")

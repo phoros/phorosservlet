@@ -4,21 +4,12 @@ import edu.holycross.shot.phoros.QueryGenerator
 String sparql = "@sparqls@"
 QueryGenerator qg = new QueryGenerator()
 
-CiteUrn placeUrn
-if (params.urn) {
-  try {
-    placeUrn = new CiteUrn(params.urn)
-  } catch (Exception e) {
-    System.err.println "Could not make URN from " + params.urn
-  }
-}
-
-
 
 html.html {
     head {
         title("@projectlabel@")
-		link(type : "text/css", rel : "stylesheet", href : "@coreCss@", title : "CSS stylesheet")
+	//		link(type : "text/css", rel : "stylesheet", href : "@coreCss@", title : "CSS stylesheet")
+		link(type : "text/css", rel : "stylesheet", href : "css/phoros-green.css", title : "CSS stylesheet")
     }
     
     body {
@@ -38,16 +29,16 @@ html.html {
 	      th("Normalized text")
 	      th("Comparative view")
 	    }
-
 	    tr {
-	      td("Year 8") 
+	      td("Year 2") 
 	      td {
-		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year8.hc1:header.right", "normalized")
+		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year2.hc1:header.front.1", "diplomatic")
 	      }
 	      td {
-		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year8.hc2:header.right", "normalized")
+		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year2.hc2:header.front.1", "normalized")
 	      }
 	      td {
+		mkp.yield "TBA"
 	      }
 	    }
 
