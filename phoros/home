@@ -47,8 +47,8 @@ html.html {
 
 	  ul {
 	      li {
-	       mkp.yield "see layout of inscribed surfaces on "
-		a (href: "indices?urn=urn:cite:shotimg:atl.ATL001","stele 1")
+	       mkp.yield "see layout of "
+		a (href: "indices?urn=urn:cite:shotimg:atl.ATL001","inscribed surfaces on stele 1")
 	      }
 
 	      li {
@@ -64,35 +64,45 @@ html.html {
 	      }
 	  }
 
-	  h2("Places")
+
+
+	  h2("Analyses")
+
+	  h3("Payment records")
+	  ul {
+	    li {				
+	      mkp.yield "see a summary of "
+	      a(href: "survival.html","surviving payment records")
+	    }
+	    li {
+	      mkp.yield "search payment records by amount"
+	    }
+	    li {
+	      mkp.yield "see tribute by administrative district"
+	      mkp.yield " (year 5 and following)"
+	    }
+	  }
+
+	  h3("Places")
 	  ul {
 	    li {
 	      mkp.yield "tribute-paying entities"
 	    }
 	  }
-
-	  h2("Analyses")
-	    ul {
-	      li {				
-		mkp.yield "see a summary of "
-		a(href: "survival.html","surviving payment records")
-	      }
-	      li {
-		mkp.yield "search payment records by amount"
-	      }
-	      li {
-		mkp.yield "see tribute by administrative district"
-		mkp.yield " (year 5 and following)"
-	      }
+	  h3("People")
+	  ul {
+	    li {
+	      mkp.yield "persons named in the text"
 	    }
+	  }
 
 
 	    h2("Other utilities")
 	    ul{
 
 	      li {
-		mkp.yield ("See an ")
-		a(href : "overview", "overview of contents")
+		mkp.yield ("See an automatically generated ")
+		a(href : "overview", "summary of archival material")
 		mkp.yield (" (with links to browse contents)")
 	      }
 

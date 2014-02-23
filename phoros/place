@@ -25,7 +25,14 @@ html.html {
     
     	header (role : "banner"){
             h1("Place: ${placeUrn}")
-            nav(role : "navigation")
+
+            nav(role : "navigation") {
+	      p {
+		mkp.yield "@projectlabel@: "
+		a(href: "@homeUrl@", "home")
+	      }
+	    }
+
     	}
     	
     	article (role : "main") {

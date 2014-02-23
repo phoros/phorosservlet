@@ -16,12 +16,26 @@ html.html {
     
     	header (role : "banner"){
             h1("Browse texts")
-            nav(role : "navigation")
+            nav(role : "navigation") {
+	      p {
+		mkp.yield "@projectlabel@: "
+		a(href: "@homeUrl@", "home")
+	      }
+	    }
     	}
     	
     	article (role : "main") {
 	  
 
+	  h2("Relevant literary texts")
+	  ul {
+	    li ("Xenophon, Thucydides, Herodotus ...")
+	  }
+
+	  h2("Epigraphic texts")
+
+
+	  p("The tribute quota lists:")
 	  table {				
 	    tr {
 	      th("Year") 
@@ -29,6 +43,27 @@ html.html {
 	      th("Normalized text")
 	      th("Comparative view")
 	    }
+
+	    tr {
+	      td("Year 1") 
+	      td {
+		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year1.hc1:front.header.1", "diplomatic")
+	      }
+
+	      td {
+		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year1.hc2:front.header.1", "normalized")
+	      }
+
+
+	      td {
+		mkp.yield "TBA"
+	      }
+	    }
+
+
+
+
+
 	    tr {
 	      td("Year 2") 
 	      td {
@@ -42,10 +77,68 @@ html.html {
 	      }
 	    }
 
+	    tr {
+	      td("Year 3") 
+	      td {
+		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year3.hc1:front.header.1", "diplomatic")
+	      }
 
+	      td {
+		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year3.hc2:front.header.1", "normalized")
+	      }
+	      td ()
+	    }
+
+	    tr {
+	      td("Year 4") 
+	      td {
+		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year4.hc1:header.front.1", "diplomatic")
+	      }
+	      td {
+		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year4.hc2:header.front.1", "normalized")
+	      }
+	      td()
+	    }
+
+	    tr {
+	      td("Year 5") 
+	      td {
+		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year5.hc1:header.front.1","diplomatic")
+
+	      }
+	      td {
+		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year5.hc2:header.front.1","normalized")
+	      }
+	      td()
+	    }
+	    
+	    tr {
+	      td("Year 7") 
+	      td {
+		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year7.hc1:front.header.1","diplomatic")
+
+	      }
+
+	      td {
+		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year7.hc2:front.header.1","normalized")
+	      }
+	      td()
+	    }
+
+	    tr {
+	      td("Year 8") 
+	      td {
+		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year8.hc1:header.right.1","diplomatic")
+	      }
+	      td {
+		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year8.hc2:header.right.1","normalized")
+	      }
+	      td()
+	    
+	    }
 	  }
-        }
 
+	}
         footer("@htmlfooter@")
     }
 }
