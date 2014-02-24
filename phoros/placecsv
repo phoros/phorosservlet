@@ -1,0 +1,23 @@
+import edu.harvard.chs.cite.CiteUrn
+import edu.holycross.shot.phoros.QueryGenerator
+
+String sparql = "@sparqls@"
+QueryGenerator qg = new QueryGenerator()
+
+CiteUrn placeUrn
+if (params.urn) {
+  try {
+    placeUrn = new CiteUrn(params.urn)
+  } catch (Exception e) {
+    System.err.println "Could not make URN from " + params.urn
+  }
+}
+
+
+response.setContentType("text/csv")
+
+
+String replyData = "SiteName,Urn,Lon,Lat\nAegina,urn:cite:eg,23.423668000000003,37.750149\n"
+
+
+print replyData

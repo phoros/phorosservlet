@@ -90,6 +90,12 @@
     </servlet-mapping>
 
 
+    <servlet-mapping>
+        <servlet-name>GroovyServlet</servlet-name>
+        <url-pattern>/placecsv</url-pattern>
+    </servlet-mapping>
+
+
     <welcome-file-list>
         <welcome-file>home</welcome-file>
     </welcome-file-list>
