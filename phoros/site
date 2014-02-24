@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+
+<link type="text/css" rel="stylesheet" href="@coreCss@" title="Core CSS" />
+
+<style>
+svg { fill : #ddd; }
+
+
+.site {fill : red; }
+
+
+.map {
+    border: solid 2px blue;
+}
+</style>
+
+</head>
+<body>
+
+<header role="banner">
+<nav role="navigation">
+@projectlabel@:  <a href="@homeUrl@">home</a>
+</nav>
+</header>
+
+
+<article role="main">
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script>
+var urn = location.search.split('urn=')[1];
+var lon =   23.423668000000003;
+var lat =    37.750149;
+
+
+var title = d3.select("header").append("title").text("Site " + urn);
+
+var h1 = d3.select("body").append("h1").text("Site " + urn);
+
+
+
+console.log ("loc " + location + " and urn " + urn);
+var width = 250,
+height = 200;
+
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+
+
+d3.json("aegean.topojson", function(error, greece) {
+
+var pt1 = {
+    "type": "Point",
+    "coordinates": [
+lon,lat
+    ]
+}
+
+    var coast = topojson.feature(greece, greece.objects.aegean);
+
+
+    var proj = d3.geo.mercator()
+	.center([44,32])
+	.scale([1100])
+    ;
+
+    var path = d3.geo.path()
+	.projection(proj)
+	.pointRadius(5);
+
+    svg.append("path")
+	.datum(coast)
+	.attr("d",path);
+
+
+    svg.append("path")
+	.datum(pt1)
+	.attr("class", "site")
+        .attr("urn",urn)
+	.attr("d",path);
+});
+console.log(svg);
+</script>
+</article>
+
+<footer>@htmlfooter@</footer>
+</body>
+</html>
