@@ -9,6 +9,7 @@ project.ext {
     graphVersion = "0.3.15"
 
     groovyVersion = "2.0.6"
+    httpbuilderVersion = "0.5.2"
 
     ckVersion  = "0.1.5"
 }

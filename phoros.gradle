@@ -52,6 +52,10 @@ version = '0.0.1'
 
 repositories {
     mavenCentral()
+    // for http builder:
+    maven {
+        url "http://repository.codehaus.org"
+    }
     maven {
         url "http://beta.hpcc.uh.edu/nexus/content/repositories/releases"
     }
@@ -66,20 +70,23 @@ configurations {
 
 
 dependencies {
-    groovy  group: 'org.codehaus.groovy', name: 'groovy-all', version: groovyVersion
+  groovy  group: 'org.codehaus.groovy', name: 'groovy-all', version: groovyVersion
 
-    compile group : "edu.holycross.shot", name : "sparqlimg", version : sparqlimgVersion
-    runtime group : "edu.holycross.shot", name : "sparqlimg", version : sparqlimgVersion
+  compile group : "edu.holycross.shot", name : "sparqlimg", version : sparqlimgVersion
+  runtime group : "edu.holycross.shot", name : "sparqlimg", version : sparqlimgVersion
 
-    compile group : "edu.holycross.shot", name : "sparqlcts", version : sparqlctsVersion
-    runtime group : "edu.holycross.shot", name : "sparqlcts", version : sparqlctsVersion
+  compile group : "edu.holycross.shot", name : "sparqlcts", version : sparqlctsVersion
+  runtime group : "edu.holycross.shot", name : "sparqlcts", version : sparqlctsVersion
 
-    compile group : "edu.holycross.shot", name : "sparqlcc", version : sparqlccVersion
-    runtime group : "edu.holycross.shot", name : "sparqlcc", version : sparqlccVersion
+  compile group : "edu.holycross.shot", name : "sparqlcc", version : sparqlccVersion
+  runtime group : "edu.holycross.shot", name : "sparqlcc", version : sparqlccVersion
 
-    compile group : "edu.holycross.shot", name : "dsegraph", version : graphVersion
-    runtime group : "edu.holycross.shot", name : "dsegraph", version : graphVersion
+  compile group : "edu.holycross.shot", name : "dsegraph", version : graphVersion
+  runtime group : "edu.holycross.shot", name : "dsegraph", version : graphVersion
 
+
+  compile group: 'org.codehaus.groovy.modules.http-builder', name: 'http-builder', version: httpbuilderVersion
+  runtime group: 'org.codehaus.groovy.modules.http-builder', name: 'http-builder', version: httpbuilderVersion
 
     ck group : "org.homermultitext", name : "citekit", version : ckVersion
 }
