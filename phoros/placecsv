@@ -67,10 +67,10 @@ if (!done) {
   def siteReply = slurper.parseText(getSparqlReply("application/json", q))
 
 
-  StringBuffer sb = new StringBuffer("SiteName,Urn,Lon,Lat,Paymt,Yr,Obols\n")
+  StringBuffer sb = new StringBuffer("SiteName,Urn,Lon,Lat,Paymt,Yr,Obols,Src\n")
 
   siteReply.results.bindings.each { b ->
-    sb.append("${b.lab.value},${placeUrn},${b.lon.value},${b.lat.value},${b.payrec.value},${b.yr.value},${b.obs.value}\n")
+    sb.append("${b.lab.value},${placeUrn},${b.lon?.value},${b.lat?.value},${b.payrec.value},${b.yr.value},${b.obs?.value},${b.txt.value}\n")
   }
   print sb.toString()
 }
