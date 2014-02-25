@@ -82,7 +82,10 @@ function tableData(csv) {
 	var newRow = tab.append("tr")
 	newRow.append("td").text(csv[i].Yr)
 	newRow.append("td").text(csv[i].Obols)
-	newRow.append("td").text(csv[i].Src)
+	var cell = newRow.append("td")
+	cell.append("a")
+	.attr("href","inscr?urn=" + csv[i].Src)
+	.text(csv[i].Src)
     }
 
 
