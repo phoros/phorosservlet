@@ -84,11 +84,13 @@ dependencies {
   compile group : "edu.holycross.shot", name : "dsegraph", version : graphVersion
   runtime group : "edu.holycross.shot", name : "dsegraph", version : graphVersion
 
+  compile group: 'edu.harvard.chs', name: 'cite', version: citeVersion
+  runtime group: 'edu.harvard.chs', name: 'cite', version: citeVersion
 
   compile group: 'org.codehaus.groovy.modules.http-builder', name: 'http-builder', version: httpbuilderVersion
   runtime group: 'org.codehaus.groovy.modules.http-builder', name: 'http-builder', version: httpbuilderVersion
-
-    ck group : "org.homermultitext", name : "citekit", version : ckVersion
+  
+  ck group : "org.homermultitext", name : "citekit", version : ckVersion
 }
 
 // Allow override of basic configuration:
@@ -117,21 +119,6 @@ task checkSrc() {
 
   println "Phoros classesDir = " + sourceSets['phoros'].output.classesDir
 }
-/*
-task copyInventory(type: Copy) {
-  from "${inventoryDir}"
-  into "${buildDir}/tmp/jettyRunWar/webapp/invs/"
-  doLast {
-    if (inventoryDir != "") {
-      println ""
-      println "Copied inventories from ${inventoryDir} to  build location ${buildDir}/tmp/jettyRunWar/webapp/invs"
-      println ""
-    }
-  }
-}
-
-*/
-
 
 task setupCK (type: Copy ) {
     from  zipTree(configurations.ck.files.asList()[0])
@@ -140,12 +127,13 @@ task setupCK (type: Copy ) {
 
 
 task squawk {
-  System.err.println "Using SPARQL doint point ${sparqls}."
+  System.err.println "Using homeUrl ${homeUrl}"
+  System.err.println "Using SPARQL end point ${sparqls}."
   System.err.println "index service is in version ${graphVersion}"
   System.err.println "collection service is in version ${sparqlccVersion}"
   System.err.println "image service is in version ${sparqlimgVersion}, linking to ${images}"
   System.err.println "citekit is in version ${ckVersion}, linking to ${citekit}"
-  System.err.println "Using homeUrl ${homeUrl}"
+
 }
 
 jettyRunWar.dependsOn ([squawk, setupCK])

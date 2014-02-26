@@ -8,6 +8,8 @@ project.ext {
     sparqlccVersion = "0.3.0"
     graphVersion = "0.3.15"
 
+    citeVersion = "0.14.1"	
+
     groovyVersion = "2.0.6"
     httpbuilderVersion = "0.5.2"
 

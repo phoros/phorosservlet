@@ -27,10 +27,6 @@ html.html {
     	article (role : "main") {
 	  
 
-	  h2("Relevant literary texts")
-	  ul {
-	    li ("Xenophon, Thucydides, Herodotus ...")
-	  }
 
 	  h2("Epigraphic texts")
 
@@ -56,13 +52,9 @@ html.html {
 
 
 	      td {
-		mkp.yield "TBA"
+		a(href : "inscr?urn=urn:cts:phoros:stele1.year1.hc2:front.header.1", "comparative view with images")
 	      }
 	    }
-
-
-
-
 
 	    tr {
 	      td("Year 2") 
@@ -73,7 +65,8 @@ html.html {
 		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year2.hc2:header.front.1", "normalized")
 	      }
 	      td {
-		mkp.yield "TBA"
+		a(href : "inscr?urn=urn:cts:phoros:stele1.year2.hc2:front.header.1", "comparative view with images")
+
 	      }
 	    }
 
@@ -86,7 +79,9 @@ html.html {
 	      td {
 		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year3.hc2:front.header.1", "normalized")
 	      }
-	      td ()
+	      td {
+		a(href : "inscr?urn=urn:cts:phoros:stele1.year3.hc2:front.header.1", "comparative view with images")
+	      }
 	    }
 
 	    tr {
@@ -97,7 +92,9 @@ html.html {
 	      td {
 		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year4.hc2:header.front.1", "normalized")
 	      }
-	      td()
+	      td {
+		a(href : "inscr?urn=urn:cts:phoros:stele1.year4.hc2:front.header.1", "comparative view with images")
+	      }
 	    }
 
 	    tr {
@@ -109,7 +106,9 @@ html.html {
 	      td {
 		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year5.hc2:header.front.1","normalized")
 	      }
-	      td()
+	      td {
+		a(href : "inscr?urn=urn:cts:phoros:stele1.year5.hc2:front.header.1", "comparative view with images")
+	      }
 	    }
 	    
 	    tr {
@@ -122,7 +121,9 @@ html.html {
 	      td {
 		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year7.hc2:front.header.1","normalized")
 	      }
-	      td()
+	      td {
+		a(href : "inscr?urn=urn:cts:phoros:stele1.year7.hc2:front.header.1", "comparative view with images")
+	      }
 	    }
 
 	    tr {
@@ -133,11 +134,26 @@ html.html {
 	      td {
 		a(href : "texts?request=GetPassagePlus&urn=urn:cts:phoros:stele1.year8.hc2:header.right.1","normalized")
 	      }
-	      td()
-	    
+	      td {
+		a(href : "inscr?urn=urn:cts:phoros:stele1.year8.hc2:front.header.1", "comparative view with images")
+	      }
 	    }
 	  }
 
+
+	  h2("Relevant literary texts")
+	  ul {
+	    li ("Xenophon ('Old Oligarch')")
+	    li("Thucydides") 
+	    li("Herodotus")
+	    li("Plutarch")
+	    li("Diodorus")
+	    li("Aeschylus")
+	    li("Nepos")
+	  }
+
+	  h2("Other relevant inscriptions")
+	  p("TBA")
 	}
         footer("@htmlfooter@")
     }
