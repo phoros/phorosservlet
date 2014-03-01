@@ -7,6 +7,17 @@ class QueryGenerator {
   QueryGenerator() {}
 
 
+
+  String allLonLats() {
+    return """
+SELECT ?site ?sitename ?lat ?lon WHERE {
+   ?site <http://www.homermultitext.org/hmt/citedata/places_EnglishForm>   ?sitename .
+   ?site <http://www.homermultitext.org/hmt/citedata/places_Lat>  ?lat .
+   ?site <http://www.homermultitext.org/hmt/citedata/places_Lon>  ?lon .
+}
+"""
+  }
+
   /**
    * @param urnStr CTS URN of a *diplomatic* edition.
    */
