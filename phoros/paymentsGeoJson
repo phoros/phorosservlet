@@ -59,6 +59,7 @@ def featureList = []
 
 
 def payList = [:]
+def changeList = [:]
 def siteName = ""
 String urn = ""
 def coords =  []
@@ -68,15 +69,16 @@ siteReply.results.bindings.each { b ->
     if ((urn != "") && (coords.size() > 1)) {
       Site s = new Site(geometry: [:], properties: [:], type: 'Feature')
       s.properties = ['siteName': siteName, 'urn': urn]
-      if (b.chg?.value != null) {
-	s.properties['change'] = b.chg.value
-      }
       payList.keySet().each { k ->
 	s.properties[k] = payList[k]
+      }
+     changeList.keySet().each { k ->
+	s.properties[k] = changeList[k]
       }
       s.geometry = ['coordinates': [coords[0], coords[1]], 'type': 'Point']
       featureList.add(s)
       payList.clear()
+      changeList.clear()
     }
 
 
@@ -87,15 +89,20 @@ siteReply.results.bindings.each { b ->
     } 
   }
   payList["year_${b.yr?.value}"] = b.obs?.value
+  changeList["year_${b.yr?.value}_change"] = b.chg?.value
   urn = b.urn.value
 }
 
 // don't forget last one!
 Site s = new Site(geometry: [:], properties: [:], type: 'Feature')
-s.properties = ['siteName': siteName, 'urn': urn, 'payments': payList]
+s.properties = ['siteName': siteName, 'urn': urn]
 payList.keySet().each { k ->
   s.properties[k] = payList[k]
 }
+changeList.keySet().each { k ->
+  s.properties[k] = changeList[k]
+}
+
 s.geometry = ['coordinates': [coords[0], coords[1]], 'type': 'Point']
 featureList.add(s)
 
