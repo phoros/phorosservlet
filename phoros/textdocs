@@ -26,9 +26,13 @@ html.html {
     	
     	article (role : "main") {
 	  
-
+	  p("""The tribute quota lists are being edited in
+parallel diplomatic and normalized versions.  The comparative view
+in the links below juxtaposes both versions, together with digital versions
+of the photographs and drawings we have used to create the edition.""")
 
 	  h2("Epigraphic texts")
+
 
 
 	  p("The tribute quota lists:")

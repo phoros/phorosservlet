@@ -22,7 +22,8 @@ def imgReply = slurper.parseText(svcReply)
 html.html {
     head {
         title("@projectlabel@")
-		link(type : "text/css", rel : "stylesheet", href : "@coreCss@", title : "CSS stylesheet")
+	link(type : "text/css", rel : "stylesheet", href : "@coreCss@", title : "CSS stylesheet")
+	link(type : "text/css", rel : "stylesheet", href : "front.css", title : "CSS stylesheet")
     }
     
     body {
@@ -34,54 +35,47 @@ html.html {
     	
     	article (role : "main") {
 	  
-
-	  h2("Texts, artifacts, images")
-	  ul {
-	    li {
-	      mkp.yield "browse "
-	      a(href: "textdocs", "texts")
+	  div(class: "frontpg") {
+	    h3("Artifacts")
+	    a (href: "artifacts.html") {
+	      img(src: "http://shot.holycross.edu/mapatl/artificon.png")
 	    }
+	  }
 
-	    li {
-	      a (href: "indices?urn=urn:cite:shotimg:atl.ATL001","inscribed surfaces on stele 1")
-	    }
-
-	    li {
-	      mkp.yield "extant stone fragments (TBA)"
-	    }
-
-	    li {
-	      mkp.yield "browse "
-	      a(href : "browseimg?urn=urn:cite:shotimg:atl", "images")
+	  div(class: "frontpg") {
+	    h3("Maps")
+	    a(href: "maps.html") {
+	      img(src: "http://shot.holycross.edu/mapatl/mapicon.png")
 	    }
 	  }
 
 
-	  h2("Analyses")
+	  div(class: "frontpg") {
+	    h3("Images")
+	    a (href: "browseimg?urn=urn:cite:shotimg:atl") {
+	      img(src: "http://shot.holycross.edu/mapatl/photoicon.png")
+	    }
+	  }
 
-	  h3("Payment records")
-	  ul {
-	    li {				
-	      mkp.yield "see a summary of "
-	      a(href: "survival.html","surviving payment records")
-	      mkp.yield ", sorted by tribute-paying entity"
+	  div(class: "frontpg") {
+	    h3("Texts")
+	    a(href: "textdocs") {
+	      img(src: "http://shot.holycross.edu/mapatl/texticon.jpg")
 	    }
 	  }
 
 
-	  h2("Indices")
-
-	  h3("People")
-	  ul {
-	    li {
-	      mkp.yield "persons named in the text"
+	  div(class: "frontpg") {
+	    h3("Sequencing")
+	    a (href: "sequencing.html") {
+	      img(src: "http://shot.holycross.edu/mapatl/seqicon.png")
 	    }
 	  }
 
 
+	  div (class: "clearme") {
 	    h2("Other utilities")
 	    ul{
-
 	      li {
 		mkp.yield ("See an automatically generated ")
 		a(href : "overview", "summary of archival material")
@@ -91,9 +85,13 @@ html.html {
 	      li {
 		a(href : "svcforms", "look up material by URN")
 	      }
-            }
-        }
+	      li {
+		mkp.yield "persons named in the text"
+	      }
 
+            }
+	  }
+	}
         footer("@htmlfooter@")
     }
 }
