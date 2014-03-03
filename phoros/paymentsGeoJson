@@ -50,7 +50,8 @@ response.setHeader( "Access-Control-Allow-Origin", "*")
 
 
 def slurper = new groovy.json.JsonSlurper()
-String q =  qg.phorosQuery()
+//String q =  qg.phorosQuery()
+String q =  qg.phorosWChangeQuery()
 def siteReply = slurper.parseText(getSparqlReply("application/json", q))
 
 
@@ -67,6 +68,9 @@ siteReply.results.bindings.each { b ->
     if ((urn != "") && (coords.size() > 1)) {
       Site s = new Site(geometry: [:], properties: [:], type: 'Feature')
       s.properties = ['siteName': siteName, 'urn': urn]
+      if (b.chg?.value != null) {
+	s.properties['change'] = b.chg.value
+      }
       payList.keySet().each { k ->
 	s.properties[k] = payList[k]
       }

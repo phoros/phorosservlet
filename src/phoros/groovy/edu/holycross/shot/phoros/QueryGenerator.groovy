@@ -6,6 +6,46 @@ class QueryGenerator {
 
   QueryGenerator() {}
 
+  String phorosWChangeQuery() {
+    return """SELECT ?urn ?lab ?lon ?lat ?payrec ?yr ?obs  ?txt ?chg WHERE {
+
+?urn <http://www.w3.org/1999/02/22-rdf-syntax-ns#label>  ?lab .
+?urn <http://shot.holycross.edu/phoros/rdf/paid>  ?payrec .
+?payrec <http://www.homermultitext.org/hmt/citedata/payrec_Year> ?yr .
+?payrec <http://www.homermultitext.org/hmt/citedata/payrec_Obols>  ?obs .
+?payrec <http://www.homermultitext.org/hmt/citedata/payrec_TextPassage> ?txt .
+?payrec <http://shot.holycross.edu/phoros/rdf/change> ?chg .
+
+OPTIONAL {
+?urn <http://www.homermultitext.org/hmt/citedata/places_Lon> ?lon .
+?urn <http://www.homermultitext.org/hmt/citedata/places_Lat> ?lat .
+}
+
+FILTER (!regex(str(?lab), "^urn:.+\$" ) ) .
+
+}
+ORDER BY ?urn 
+"""
+  }
+
+
+
+  String phorosSeqQuery() {
+    return """SELECT ?site ?lab ?payrec ?yr ?obs  WHERE {
+
+?site <http://www.w3.org/1999/02/22-rdf-syntax-ns#label>  ?lab .
+?site <http://shot.holycross.edu/phoros/rdf/paid>  ?payrec .
+?payrec <http://www.homermultitext.org/hmt/citedata/payrec_Year> ?yr .
+?payrec <http://www.homermultitext.org/hmt/citedata/payrec_Obols>  ?obs .
+?payrec <http://purl.org/ontology/olo/core#item> ?seq .
+
+FILTER (!regex(str(?lab), "^urn:.+\$" ) ) .
+
+}
+ORDER BY ?seq 
+"""
+  }
+
 
 
   String allLonLats() {
