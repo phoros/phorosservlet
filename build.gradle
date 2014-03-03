@@ -7,6 +7,16 @@ apply plugin : 'groovy'
 
 apply from: "versions.gradle"
 
+
+if (hasProperty('custom')) {
+  println "BEFORE configuration, custom is " + custom
+
+  project.ext {	  
+    customDir = custom
+  }
+}
+
+
 // Allow override of links config:
 if (hasProperty('links')) {
     System.err.print "Using links configuration from ${links}\n"
@@ -44,10 +54,14 @@ if (hasProperty('conf')) {
     apply from: "conf.gradle"
 }
 
-
+if (!hasProperty('customDir')) {
+  project.ext {
+    customDir = custom
+  }
+}
 
 group = "org.homermultitext"
-version = '0.0.1'
+version = '0.1.0'
 
 repositories {
     mavenCentral()
@@ -76,8 +90,8 @@ dependencies {
     compile group : "edu.holycross.shot", name : "sparqlcc", version : sparqlccVersion
     runtime group : "edu.holycross.shot", name : "sparqlcc", version : sparqlccVersion
 
-    compile group : "edu.holycross.shot", name : "dsegraph", version : graphVersion
-    runtime group : "edu.holycross.shot", name : "dsegraph", version : graphVersion
+    compile group : "edu.holycross.shot", name : "citegraph", version : graphVersion
+    runtime group : "edu.holycross.shot", name : "citegraph", version : graphVersion
 
 
     ck group : "org.homermultitext", name : "citekit", version : ckVersion
@@ -91,8 +105,8 @@ if (hasProperty('jettyPort')) {
 	httpPort = 8080
 }
 
-// Save headaches by reporting config SqarQL
-println "Using ${sparqls}."
+
+
 
 //httpPort = 8080
 stopPort = 9451
@@ -103,14 +117,14 @@ task setupCK (type: Copy ) {
     into "${buildDir}/tmp/jettyRunWar/webapp/citekit"
 }
 
-
 task squawk {
+    System.err.println "\nUsing sparql end point ${sparqls}."	
+    System.err.println "Using homeUrl ${homeUrl}"
     System.err.println "index service is in version ${graphVersion}"
     System.err.println "collection service is in version ${sparqlccVersion}"
     System.err.println "image service is in version ${sparqlimgVersion}, linking to ${images}"
     System.err.println "citekit is in version ${ckVersion}, linking to ${citekit}"
-    System.err.println "Using homeUrl ${homeUrl}"
-
+    System.err.println "Will add customizations from ${customDir}\n"
 }
 
 jettyRunWar.dependsOn ([squawk, setupCK])
@@ -119,7 +133,7 @@ jettyRunWar.dependsOn ([squawk, setupCK])
 war.dependsOn ([setupCK])
 
 war {
-    filter(ReplaceTokens, tokens: [homeUrl: homeUrl, sparqls: sparqls, iipsrv : iipsrv, demoImage : demoImage, demoObject : demoObject, demoText : demoText, detailWidth: detailWidth, images : images, texts : texts, collections : collections, indices : indices, ict : ict, citekit : citekit, htmlheader : htmlheader, htmlfooter : htmlfooter, htmlnav : htmlnav, projectlabel : projectlabel, queryforms: queryforms, mooxslt: mooxslt, coreCss: coreCss])
+    filter(ReplaceTokens, tokens: [homeUrl: homeUrl, sparqls: sparqls, iipsrv : iipsrv, demoImage : demoImage, demoObject : demoObject, demoText : demoText, detailWidth: detailWidth, images : images, texts : texts, collections : collections, indices : indices, ict : ict, citekit : citekit, htmlheader : htmlheader, htmlfooter : htmlfooter, htmlnav : htmlnav, projectlabel : projectlabel, queryforms: queryforms, mooxslt: mooxslt, coreCss: coreCss, ckImgSize: ckImgSize, defaultContext: defaultContext])
 
     from ("${buildDir}/tmp/jettyRunWar/webapp/citekit") {
         into("citekit")
@@ -128,6 +142,11 @@ war {
     from ("${inventoryDir}") {
       into ("invs")
     }
+    
+    from ("${customDir}") {
+      exclude "README.md"
+    }
+
 
     classpath sourceSets.main.output.classesDir
     classpath configurations.runtime
