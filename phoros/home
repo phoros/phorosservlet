@@ -74,6 +74,17 @@ html.html {
 
 
 	  div (class: "clearme") {
+
+	    h2("About the Phoros project")
+	    ul {
+	      li {
+		a(href: "overview.html") {
+		  mkp.yield "Overview"
+		}
+		mkp.yield """ (what the project is about, who is involved, links to all source material)"""
+	      }
+	    }
+
 	    h2("Other utilities")
 	    ul{
 	      li {
@@ -86,7 +97,7 @@ html.html {
 		a(href : "svcforms", "look up material by URN")
 	      }
 	      li {
-		mkp.yield "persons named in the text"
+		mkp.yield "See an index of persons named in the text"
 	      }
 
             }
