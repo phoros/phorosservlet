@@ -81,8 +81,9 @@ dependencies {
   compile group : "edu.holycross.shot", name : "sparqlcc", version : sparqlccVersion
   runtime group : "edu.holycross.shot", name : "sparqlcc", version : sparqlccVersion
 
-  compile group : "edu.holycross.shot", name : "dsegraph", version : graphVersion
-  runtime group : "edu.holycross.shot", name : "dsegraph", version : graphVersion
+  compile group : "edu.holycross.shot", name : "citegraph", version : graphVersion
+  runtime group : "edu.holycross.shot", name : "citegraph", version : graphVersion
+
 
   compile group: 'edu.harvard.chs', name: 'cite', version: citeVersion
   runtime group: 'edu.harvard.chs', name: 'cite', version: citeVersion
