@@ -52,12 +52,13 @@ response.setHeader( "Access-Control-Allow-Origin", "*")
 def slurper = new groovy.json.JsonSlurper()
 //String q =  qg.phorosQuery()
 String q =  qg.phorosWChangeQuery()
+System.err.print "\n" + q  + "\n"
 def siteReply = slurper.parseText(getSparqlReply("application/json", q))
 
 
 def featureList = []
 
-
+def seqList = [:]
 def payList = [:]
 def changeList = [:]
 def siteName = ""
@@ -76,12 +77,17 @@ siteReply.results.bindings.each { b ->
       changeList.keySet().each { k ->
 	s.properties[k] = changeList[k]
       }
+      seqList.keySet().each { k ->
+	s.properties[k] = seqList[k]
+      }
+
       s.geometry = ['coordinates': [coords[0], coords[1]], 'type': 'Point']
       featureList.add(s)
 
 
       payList.clear()
       changeList.clear()
+      seqList.clear()
 
 
     }
@@ -95,6 +101,7 @@ siteReply.results.bindings.each { b ->
 
   payList["year_${b.yr?.value}"] = b.obs?.value
   changeList["year_${b.yr?.value}_change"] = b.chg?.value
+  seqList["year_${b.yr?.value}_seq"] = b.seq?.value
   urn = b.urn.value
 }
 
@@ -107,6 +114,10 @@ payList.keySet().each { k ->
 changeList.keySet().each { k ->
   s.properties[k] = changeList[k]
 }
+seqList.keySet().each { k ->
+  s.properties[k] = seqList[k]
+}
+
 
 s.geometry = ['coordinates': [coords[0], coords[1]], 'type': 'Point']
 featureList.add(s)
