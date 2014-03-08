@@ -65,6 +65,7 @@ String urn = ""
 def coords =  []
 
 siteReply.results.bindings.each { b ->
+
   if (urn != b.urn.value) {
     if ((urn != "") && (coords.size() > 1)) {
       Site s = new Site(geometry: [:], properties: [:], type: 'Feature')
@@ -72,22 +73,26 @@ siteReply.results.bindings.each { b ->
       payList.keySet().each { k ->
 	s.properties[k] = payList[k]
       }
-     changeList.keySet().each { k ->
+      changeList.keySet().each { k ->
 	s.properties[k] = changeList[k]
       }
       s.geometry = ['coordinates': [coords[0], coords[1]], 'type': 'Point']
       featureList.add(s)
+
+
       payList.clear()
       changeList.clear()
+
+
     }
-
-
+    
+    siteName = b.lab.value
     if (b.lat?.value) {
-      siteName = b.lab.value
       coords.clear()
       coords = [b.lon?.value.toBigDecimal(), b.lat?.value.toBigDecimal() ]
     } 
   }
+
   payList["year_${b.yr?.value}"] = b.obs?.value
   changeList["year_${b.yr?.value}_change"] = b.chg?.value
   urn = b.urn.value

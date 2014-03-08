@@ -15,6 +15,7 @@ class QueryGenerator {
 ?payrec <http://www.homermultitext.org/hmt/citedata/payrec_Obols>  ?obs .
 ?payrec <http://www.homermultitext.org/hmt/citedata/payrec_TextPassage> ?txt .
 ?payrec <http://shot.holycross.edu/phoros/rdf/change> ?chg .
+?txt <http://www.homermultitext.org/cts/rdf/hasSequence> ?seq .
 
 OPTIONAL {
 ?urn <http://www.homermultitext.org/hmt/citedata/places_Lon> ?lon .
@@ -28,7 +29,7 @@ ORDER BY ?urn
 """
   }
 
-
+  /*ORDER BY ?yr ?seq  */
 
   String phorosSeqQuery() {
     return """SELECT ?site ?lab ?payrec ?yr ?obs  WHERE {
