@@ -7,6 +7,14 @@ class QueryGenerator {
   QueryGenerator() {}
 
   String phorosWChangeQuery() {
+    return phorosWChangeQuery("urn")
+  } 
+
+  String phorosWChangeQuery(String sortBy) {
+    String sortFields = "?urn"
+    if (sortBy == "change") {
+      sortFields = "?yr ?seq"
+    }  
     return """SELECT ?urn ?lab ?lon ?lat ?payrec ?yr ?obs  ?txt ?chg WHERE {
 
 ?urn <http://www.w3.org/1999/02/22-rdf-syntax-ns#label>  ?lab .
@@ -25,7 +33,7 @@ OPTIONAL {
 FILTER (!regex(str(?lab), "^urn:.+\$" ) ) .
 
 }
-ORDER BY ?urn 
+ORDER BY ${sortFields}
 """
   }
 
