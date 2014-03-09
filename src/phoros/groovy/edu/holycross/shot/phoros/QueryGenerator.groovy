@@ -15,7 +15,7 @@ class QueryGenerator {
     if (sortBy == "change") {
       sortFields = "?yr ?seq"
     }  
-    return """SELECT ?urn ?lab ?lon ?lat ?payrec ?yr ?obs  ?txt ?chg WHERE {
+    return """SELECT ?urn ?lab ?lon ?lat ?payrec ?yr ?obs  ?txt ?chg ?seq WHERE {
 
 ?urn <http://www.w3.org/1999/02/22-rdf-syntax-ns#label>  ?lab .
 ?urn <http://shot.holycross.edu/phoros/rdf/paid>  ?payrec .
