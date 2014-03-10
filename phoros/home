@@ -34,11 +34,38 @@ html.html {
     	}
     	
     	article (role : "main") {
+
+	  div(class: "frontpg") {
+	    h3("Images")
+	    a (href: "browseimg?urn=urn:cite:shotimg:atl&offset=58") {
+	      img(src: "http://shot.holycross.edu/mapatl/photoicon.png")
+	    }
+	  }
+
 	  
 	  div(class: "frontpg") {
 	    h3("Artifacts")
 	    a (href: "artifacts.html") {
-	      img(src: "http://shot.holycross.edu/mapatl/artificon.png")
+	      img(src: "http://shot.holycross.edu/mapatl/artificon2.png")
+	    }
+	  }
+
+
+
+	  div(class: "frontpg") {
+	    h3("Texts")
+	    a(href: "textdocs") {
+	      img(src: "http://shot.holycross.edu/mapatl/texticon.jpg")
+	    }
+	  }
+
+
+
+
+	  div(class: "frontpg") {
+	    h3("Sequencing")
+	    a (href: "sequencing.html") {
+	      img(src: "http://shot.holycross.edu/mapatl/seqicon.png")
 	    }
 	  }
 
@@ -50,27 +77,6 @@ html.html {
 	  }
 
 
-	  div(class: "frontpg") {
-	    h3("Images")
-	    a (href: "browseimg?urn=urn:cite:shotimg:atl") {
-	      img(src: "http://shot.holycross.edu/mapatl/photoicon.png")
-	    }
-	  }
-
-	  div(class: "frontpg") {
-	    h3("Texts")
-	    a(href: "textdocs") {
-	      img(src: "http://shot.holycross.edu/mapatl/texticon.jpg")
-	    }
-	  }
-
-
-	  div(class: "frontpg") {
-	    h3("Sequencing")
-	    a (href: "sequencing.html") {
-	      img(src: "http://shot.holycross.edu/mapatl/seqicon.png")
-	    }
-	  }
 
 
 	  div (class: "clearme") {

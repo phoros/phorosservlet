@@ -36,13 +36,12 @@ response.setContentType("application/json")
 response.setCharacterEncoding('UTF-8')
 response.setHeader( "Access-Control-Allow-Origin", "*")
 
-String[] hdr = new String[7]
+String[] hdr = new String[8]
 def idx = 0
-["site","name","year","obols","txt","change","sequence" ].each {
+["site","name","year","obols","txt","change","sequence","payrecord" ].each {
   hdr[idx] = it
   idx++
 }
-
 
 
 
@@ -57,7 +56,7 @@ def siteReply = slurper.parseText(getSparqlReply("application/json", q))
 siteReply.results.bindings.each { b ->
   //["site","name","year","obols","txt","change","sequence" ].each {
   /* ?urn ?lab ?lon ?lat ?payrec ?yr ?obs  ?txt ?chg ?seq */
-  String[] record = new String[7]
+  String[] record = new String[8]
   record[0] = b.urn.value
   record[1] = b.lab.value
   record[2] = b.yr.value
@@ -65,6 +64,7 @@ siteReply.results.bindings.each { b ->
   record[4] = b.txt?.value
   record[5] = b.chg?.value
   record[6] = b.seq?.value
+  record[7] = b.payrec.value
 
   writer.writeNext(record)
 }

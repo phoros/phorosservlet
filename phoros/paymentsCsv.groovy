@@ -41,7 +41,7 @@ def slurper = new groovy.json.JsonSlurper()
 String q =  qg.phorosWChangeQuery()
 def siteReply = slurper.parseText(getSparqlReply("application/json", q))
 
-StringBuffer buff = new StringBuffer("siteUrn,siteName,year,obols,change,lon,lat\n")
+StringBuffer buff = new StringBuffer("siteUrn,siteName,year,obols,change,lon,lat,payment\n")
 siteReply.results.bindings.each { b ->
   String urn = b.urn.value
   String siteName = b.lab.value
