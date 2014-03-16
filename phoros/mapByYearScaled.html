@@ -149,7 +149,7 @@ var buildPage = function(error, greece, lls) {
 	.enter()
 	.insert("a")
 	.attr("xlink:href",function(s){
-	    return("place?urn=" + s.properties.urn);
+	    return("site.html?urn=" + s.properties.urn);
 	})
 	.append("path")
 	.attr("d",path)    	

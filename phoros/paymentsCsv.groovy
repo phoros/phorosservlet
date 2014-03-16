@@ -39,6 +39,10 @@ response.setHeader( "Access-Control-Allow-Origin", "*")
 def slurper = new groovy.json.JsonSlurper()
 //String q =  qg.phorosQuery()
 String q =  qg.phorosWChangeQuery()
+
+
+//println "\nQUery: " + q + "\n"
+
 def siteReply = slurper.parseText(getSparqlReply("application/json", q))
 
 StringBuffer buff = new StringBuffer("siteUrn,siteName,year,obols,change,lon,lat,payment\n")
