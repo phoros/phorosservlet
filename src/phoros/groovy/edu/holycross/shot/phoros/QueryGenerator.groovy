@@ -120,18 +120,20 @@ ORDER BY ?urn
   String siteQuery(String urnStr) {
     return """SELECT ?lab ?lon ?lat ?payrec ?yr ?obs  ?txt WHERE {
 
-?s <http://www.w3.org/1999/02/22-rdf-syntax-ns#label>  ?lab .
-?s <http://shot.holycross.edu/phoros/rdf/paid>  ?payrec .
+<${urnStr}> <http://www.w3.org/1999/02/22-rdf-syntax-ns#label>  ?lab .
+<${urnStr}> <http://shot.holycross.edu/phoros/rdf/paid>  ?payrec .
 ?payrec <http://www.homermultitext.org/hmt/citedata/payrec_Year> ?yr .
 ?payrec <http://www.homermultitext.org/hmt/citedata/payrec_Obols>  ?obs .
 ?payrec <http://www.homermultitext.org/hmt/citedata/payrec_TextPassage> ?txt .
 
 OPTIONAL {
-?s <http://www.homermultitext.org/hmt/citedata/places_Lon> ?lon .
-?s <http://www.homermultitext.org/hmt/citedata/places_Lat> ?lat .
+
+<${urnStr}>  <http://shot.holycross.edu/phoros/rdf/locatedAt>  ?loc .
+?loc <http://www.homermultitext.org/hmt/citedata/loc_Lat> ?lat .
+?loc <http://www.homermultitext.org/hmt/citedata/loc_Lon> ?lon 
+
 }
 
-FILTER (str(?s) = "${urnStr}") 
 }
 ORDER BY ?yr 
 """
