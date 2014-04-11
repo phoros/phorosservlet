@@ -15,29 +15,36 @@ class QueryGenerator {
     if (sortBy == "change") {
       sortFields = "?yr ?seq"
     }  
-    return """SELECT ?urn ?lab ?lon ?lat ?payrec ?yr ?obs  ?txt ?chg ?seq WHERE {
+
+    return """
+SELECT ?urn ?lab ?yr ?obs  ?txturn ?txt ?lon ?lat ?chg ?chgamt ?seq WHERE {
 
 ?urn <http://www.w3.org/1999/02/22-rdf-syntax-ns#label>  ?lab .
 ?urn <http://shot.holycross.edu/phoros/rdf/paid>  ?payrec .
 ?payrec <http://www.homermultitext.org/hmt/citedata/payrec_Year> ?yr .
-?payrec <http://www.homermultitext.org/hmt/citedata/payrec_Obols>  ?obs .
-?payrec <http://www.homermultitext.org/hmt/citedata/payrec_TextPassage> ?txt .
-?payrec <http://shot.holycross.edu/phoros/rdf/change> ?chg .
-?txt <http://www.homermultitext.org/cts/rdf/hasSequence> ?seq .
+?payrec <http://www.homermultitext.org/hmt/citedata/payrec_TextPassage> ?txturn .
+?payrec <http://www.homermultitext.org/hmt/citedata/payrec_TextContent> ?txt .
+?payrec <http://purl.org/ontology/olo/core#item> ?seq .
 
 OPTIONAL {
-?urn <http://www.homermultitext.org/hmt/citedata/places_Lon> ?lon .
-?urn <http://www.homermultitext.org/hmt/citedata/places_Lat> ?lat .
+?payrec <http://www.homermultitext.org/hmt/citedata/payrec_ChangeStatus> ?chg .
+?payrec <http://www.homermultitext.org/hmt/citedata/payrec_ChangeAmount> ?chgamt .
+?payrec <http://www.homermultitext.org/hmt/citedata/payrec_Obols>  ?obs .
 }
 
-FILTER (!regex(str(?lab), "^urn:.+\$" ) ) .
+
+OPTIONAL {
+?urn  <http://shot.holycross.edu/phoros/rdf/locatedAt>  ?loc .
+?loc <http://www.homermultitext.org/hmt/citedata/loc_Lat> ?lat .
+?loc <http://www.homermultitext.org/hmt/citedata/loc_Lon> ?lon 
+}
+
 
 }
 ORDER BY ${sortFields}
+
 """
   }
-
-  /*ORDER BY ?yr ?seq  */
 
   String phorosSeqQuery() {
     return """SELECT ?site ?lab ?payrec ?yr ?obs  WHERE {
@@ -72,19 +79,6 @@ SELECT ?site ?sitename ?lat ?lon WHERE {
    */
   String imgsForDoc(String urnStr) {
     String queryStr = urnStr
-    /*
-    CtsUrn urn
-
-    try {
-      urn = new CtsUrn(urnStr)
-    } catch (Exception  e) {
-      throw e
-    }
-    String queryStr =  urn.getUrnWithoutPassage()
-    if (urn.getVersion() != "hc1") {
-      queryStr = "urn:cts:${urn.getCtsNs()}:${urn.getTextGroup()}.${urn.getWork()}.hc1"
-    }
-    */
     return """
 SELECT ?stone ?doc ?defimg ?img WHERE {
 
